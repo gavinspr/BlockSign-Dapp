@@ -2,17 +2,19 @@ import * as React from "react";
 import {
   ChakraProvider,
   Box,
-  Text,
+  // Text,
   Link,
   VStack,
   Code,
   Grid,
   theme,
+  Image,
 } from "@chakra-ui/react";
 // import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import { Navbar } from "./components/navbar/Navbar";
 import { Global, css } from "@emotion/react";
 import { Sidebar } from "./components/sidebar/Sidebar";
+import galaxy from "./galaxy.jpg";
 
 const GlobalStyles = css`
   .js-focus-visible :focus:not([data-focus-visible-added]) {
@@ -29,6 +31,10 @@ export const App = () => (
     {/* <ColorModeSwitcher justifySelf="flex-end" /> */}
     <Navbar />
     <Sidebar />
+    {/* <Box> */}
+    {/* <Image boxSize="200px" src={galaxy} /> */}
+    {/* </Box> */}
+
     {/* <VStack spacing={8}>
           <Text>
             Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.

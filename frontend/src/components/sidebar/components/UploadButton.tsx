@@ -1,7 +1,9 @@
 import React from "react";
 import { Button } from "@chakra-ui/react";
+// import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
 
-export const Upload = () => {
+export const UploadButton = () => {
   function buildFileSelector() {
     const fileSelector = document.createElement("input");
     fileSelector.setAttribute("type", "file");
@@ -12,12 +14,20 @@ export const Upload = () => {
 
   const handleIt = () => {
     fileSelector.click();
-    console.log(fileSelector)
+    console.log(fileSelector);
   };
+
+  const docs = [{ uri: require("./GavinSprolesResume.pdf") }];
   return (
-    <Button onClick={handleIt} w="60%" mt={10}>
-      Upload
-    </Button>
+    <>
+      <Button onClick={handleIt} w="60%" mt={8}>
+        Upload A File
+      </Button>
+      {/* <DocViewer pluginRenderers={DocViewerRenderers} documents={docs} /> */}
+      {/* <Document file="../../../panamaref.pdf">
+        <Page width={600} />
+      </Document> */}
+    </>
     //  <input type="file" onChange={(e) => console.log(e.target.files)} />
   );
 };

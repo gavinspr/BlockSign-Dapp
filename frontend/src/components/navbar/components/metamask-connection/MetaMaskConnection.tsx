@@ -160,7 +160,7 @@ export const MetaMaskConnection: React.FC<MetaMaskConnectionProps> = (
       color="white"
       // fontSize="md"
       borderRadius={30}
-      background="blue.600"
+      background="blue.500"
       // onClick={() => connectWallet()}
       // _hover={{ background: "blue.300" }}
       {...props}
