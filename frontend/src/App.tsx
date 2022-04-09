@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 import {
   ChakraProvider,
   Box,
@@ -8,17 +8,28 @@ import {
   Code,
   Grid,
   theme,
-} from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+} from "@chakra-ui/react";
+// import { ColorModeSwitcher } from "./ColorModeSwitcher";
+import { Navbar } from "./components/navbar/Navbar";
+import { Global, css } from "@emotion/react";
+import { Sidebar } from "./components/sidebar/Sidebar";
+
+const GlobalStyles = css`
+  .js-focus-visible :focus:not([data-focus-visible-added]) {
+    outline: none;
+    box-shadow: none;
+  }
+`;
 
 export const App = () => (
   <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
+    <Global styles={GlobalStyles} />
+    {/* <Box textAlign="center" fontSize="xl"> */}
+    {/* <Grid minH="100vh" p={3}> */}
+    {/* <ColorModeSwitcher justifySelf="flex-end" /> */}
+    <Navbar />
+    <Sidebar />
+    {/* <VStack spacing={8}>
           <Text>
             Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
           </Text>
@@ -31,8 +42,8 @@ export const App = () => (
           >
             Learn Chakra
           </Link>
-        </VStack>
-      </Grid>
-    </Box>
+        </VStack> */}
+    {/* </Grid>
+    </Box> */}
   </ChakraProvider>
-)
+);
