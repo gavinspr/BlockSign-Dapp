@@ -1,5 +1,6 @@
 import React, { createContext, useState } from "react";
-import { BlockchainNetwork, ethereum } from "@/types";
+import { BlockchainNetwork } from "@/types";
+import {ethereum} from '../types/Ethereum'
 import { BigNumber, ethers } from "ethers";
 // import {
 //   legendsNFTContract,

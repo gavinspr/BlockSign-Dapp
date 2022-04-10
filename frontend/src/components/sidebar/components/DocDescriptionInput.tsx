@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Box,
   FormControl,
   FormErrorMessage,
   FormHelperText,
@@ -16,7 +17,16 @@ export const DocDescriptionInput = () => {
   const isError = input === "";
   return (
     <FormControl w="90%">
-      <FormLabel>Document Description/Details</FormLabel>
+      <Box
+        pt={10}
+        // onMouseEnter={() => showFieldInfo(true)}
+        // onMouseLeave={() => showFieldInfo(false)}
+
+        // borderWidth={1}
+      >
+        <FormLabel>Document Description/Details</FormLabel>
+      </Box>
+
       <Textarea
         id="description"
         value={input}

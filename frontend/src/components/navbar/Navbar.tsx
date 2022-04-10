@@ -1,7 +1,7 @@
 import { Box, Heading, HStack, Spacer, Text } from "@chakra-ui/react";
 import React from "react";
 import { ColorModeSwitcher } from "./components/ColorModeSwitcher";
-import { MetaMaskConnection } from "./components/metamask-connection/MetaMaskConnection";
+import { MetaMaskConnection } from "./components/MetaMaskConnection";
 
 type NavbarProps = {};
 

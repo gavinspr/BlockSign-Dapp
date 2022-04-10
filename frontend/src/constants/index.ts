@@ -1,0 +1,1 @@
+export const SIGNER_INPUTS: string[] = ["name", "address", "title"];

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Box,
   FormControl,
   FormErrorMessage,
   FormHelperText,
@@ -15,16 +16,17 @@ export const DocNameInput = () => {
   const isError = input === "";
 
   return (
-    <FormControl isRequired w="90%" >
-      <FormLabel htmlFor="name" >
-        Document Name
-      </FormLabel>
-      <Input
-        id="name"
-        type="text"
-        value={input}
-        onChange={handleInputChange}
-      />
+    <FormControl isRequired w="90%">
+      <Box
+        pt={10}
+        // onMouseEnter={() => showFieldInfo(true)}
+        // onMouseLeave={() => showFieldInfo(false)}
+
+        // borderWidth={1}
+      >
+        <FormLabel htmlFor="name">Document Name</FormLabel>
+      </Box>
+      <Input id="name" type="text" value={input} onChange={handleInputChange} />
       {/* {!isError ? ( */}
       <FormHelperText>Enter a name for your document.</FormHelperText>
       {/* ) 
