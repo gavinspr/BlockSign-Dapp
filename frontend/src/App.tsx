@@ -9,6 +9,8 @@ import {
   Grid,
   theme,
   Image,
+  GridItem,
+  Flex,
 } from "@chakra-ui/react";
 // import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import { Navbar } from "./components/navbar/Navbar";
@@ -16,6 +18,8 @@ import { Global, css } from "@emotion/react";
 import { Sidebar } from "./components/sidebar/Sidebar";
 import galaxy from "./galaxy.jpg";
 import MetaMaskProvider from "./context/metaMaskContext";
+// import { DocumentViewerz } from "./components/document-viewer/DocumentViewerz";
+import SelectedDocumentsProvider from "./context/selectedDocumentsContext";
 
 const GlobalStyles = css`
   .js-focus-visible :focus:not([data-focus-visible-added]) {
@@ -27,32 +31,37 @@ const GlobalStyles = css`
 export const App = () => (
   <ChakraProvider theme={theme}>
     <MetaMaskProvider>
-      <Global styles={GlobalStyles} />
-      {/* <Box textAlign="center" fontSize="xl"> */}
-      {/* <Grid minH="100vh" p={3}> */}
-      {/* <ColorModeSwitcher justifySelf="flex-end" /> */}
-      <Navbar />
-      <Sidebar />
-      {/* <Box> */}
-      {/* <Image boxSize="200px" src={galaxy} /> */}
-      {/* </Box> */}
-
-      {/* <VStack spacing={8}>
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-          color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-            >
-            Learn Chakra
-            </Link>
-          </VStack> */}
-      {/* </Grid>
-    </Box> */}
+      <SelectedDocumentsProvider>
+        <Global styles={GlobalStyles} />
+        {/* <Grid
+        templateRows='repeat(8, 1fr)'
+        templateColumns='repeat(5, 1fr)'
+        // borderWidth={3}
+        // gap={0}
+        // h="100"
+        // w="100%"
+      > */}
+        {/* <GridItem
+        colSpan={5}
+        rowSpan={1}
+        > */}
+        {/* <Flex> */}
+        <Navbar />
+        {/* </GridItem>
+        <GridItem
+        rowSpan={6}
+        colSpan={2}
+      > */}
+        <Sidebar />
+        {/* </Flex> */}
+        {/* </GridItem>
+        <GridItem
+        colSpan={4}
+      > */}
+        {/* <DocumentViewerz /> */}
+        {/* </GridItem>
+      </Grid> */}
+      </SelectedDocumentsProvider>
     </MetaMaskProvider>
   </ChakraProvider>
 );

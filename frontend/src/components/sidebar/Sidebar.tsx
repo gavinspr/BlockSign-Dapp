@@ -9,7 +9,7 @@ import {
   Spacer,
   VStack,
 } from "@chakra-ui/react";
-import { UploadButton } from "./components/UploadButton";
+import { UploadDocumentButton } from "./components/UploadDocumentButton";
 import { DocNameInput } from "./components/DocNameInput";
 import { DocDescriptionInput } from "./components/DocDescriptionInput";
 import { SendButton } from "./components/SendButton";
@@ -20,28 +20,29 @@ type SidebarProps = {};
 
 export const Sidebar = () => {
   return (
+    // <>
     <VStack
-      // flexDir="column"
-      // borderRightWidth={1}
-      // borderRightColor="blue.500"
-      // backgroundColor="blue.400"
-      maxW="24rem"
-      // mt={5}
-      // flex="1"
-      h="94vh"
-      // overflow=""
-      // spacing={10}
-position="sticky"  
+      w="27rem"
+      minH="94vh"
+      pos="absolute"
+      top="6vh"
       boxShadow="0 1px 4px #3182CE"
+      // zIndex="overlay"
+      bg="white"
+      // bgGradient="linear(to-r, blue.200, teal.500)"
     >
-      <UploadButton />
+      <UploadDocumentButton />
       <DocNameInput />
       <DocDescriptionInput />
       <DocSigners />
       <Spacer />
-      <HStack spacing={10} justify="center" h={32} w="94%"
-              borderTopWidth={2}
-              borderColor="blue.500"
+      <HStack
+        spacing={10}
+        justify="center"
+        h={32}
+        w="94%"
+        borderTopWidth={2}
+        borderColor="blue.500"
       >
         <SignButton />
         <SendButton />
