@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -46,6 +46,7 @@ import { DocSigners } from "./components/doc-signers/DocSigners";
 import { MetaMaskConnection } from "../navbar/components/MetaMaskConnection";
 import { MySignature } from "./components/MySignature";
 import { MyDocuments } from "./components/MyDocuments";
+import { MetaMaskContext, MetaMaskContextType } from "../../context";
 
 const Header = () => {
   return (
@@ -72,6 +73,8 @@ export const Sidebar = () => {
     setIsOpen(true);
   }, []);
 
+  const { nftSignature } = useContext(MetaMaskContext) as MetaMaskContextType;
+
   return (
     <VStack
       w="30rem"
@@ -81,12 +84,12 @@ export const Sidebar = () => {
       boxShadow="0 1px 10px #000000"
     >
       <Header />
-      <UploadDocumentButton />
+      <UploadDocumentButton nftSignature={nftSignature} />
 
       {myDocuments ? (
         <>
           <MyDocuments />
-          <MySignature />
+          <MySignature nftSignature={nftSignature} />
         </>
       ) : (
         <>
@@ -107,21 +110,6 @@ export const Sidebar = () => {
           </HStack>
         </>
       )}
-      <Modal size="4xl" isCentered isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent h="55%" ml="25%">
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>{/* <Lorem count={2} /> */}</ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button variant="ghost">Secondary Action</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
     </VStack>
   );
 };

@@ -1,6 +1,6 @@
 import React, { createContext, useState } from "react";
 import { BlockchainNetwork } from "@/types";
-import {ethereum} from '../types/Ethereum'
+import { ethereum } from "../types/Ethereum";
 import { BigNumber, ethers } from "ethers";
 // import {
 //   legendsNFTContract,
@@ -10,6 +10,7 @@ import { BigNumber, ethers } from "ethers";
 export type MetaMaskContextType = {
   wallet: string;
   balances: BalancesType;
+  nftSignature?: string;
   connectWallet: () => void;
   fetchBalances: () => void;
   dappNetwork: BlockchainNetwork;
@@ -31,6 +32,10 @@ const MetaMaskProvider: React.FC<React.ReactNode> = ({ children }) => {
     dapp: "",
     native: "",
   });
+
+  const [nftSignature, setNftSignature] = useState<string | undefined>(
+    undefined
+  );
 
   ethereum.on("chainChanged", () => {
     window.location.reload();
@@ -136,6 +141,7 @@ const MetaMaskProvider: React.FC<React.ReactNode> = ({ children }) => {
       value={{
         wallet,
         balances,
+        nftSignature,
         connectWallet,
         fetchBalances,
         dappNetwork,
