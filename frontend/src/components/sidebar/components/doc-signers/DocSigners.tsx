@@ -154,6 +154,7 @@ export const DocSigners = () => {
               mt={5}
               h={10}
               w="94%"
+              borderRadius={10}
               status={documentSigners.length < 1 ? "warning" : "info"}
             >
               <AlertIcon />

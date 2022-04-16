@@ -14,12 +14,13 @@ export const Navbar = () => {
       pt={2}
       pb={2}
       spacing={5}
-      boxShadow="0 2px 4px #000000e3"
+      boxShadow="0 2px 4px #000000"
       pos="absolute"
       w="100%"
       // zIndex="overlay"
       // background="white"
-      // bgGradient="linear(to-tr, blue.500, blue.100)"
+      // 
+      
       
     >
       {/*// todo: logo component */}
@@ -28,7 +29,7 @@ export const Navbar = () => {
       </Heading>
       <Text fontSize="sm">My Documents</Text>
       <Spacer />
-      <MetaMaskConnection />
+      {/* <MetaMaskConnection /> */}
       <ColorModeSwitcher />
     </HStack>
   );

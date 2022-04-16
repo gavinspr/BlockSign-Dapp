@@ -13,11 +13,14 @@ import {
   Spacer,
   Text,
   Spinner,
+  ButtonProps,
 } from "@chakra-ui/react";
 import { RiLogoutCircleRLine, RiSettings4Fill } from "react-icons/ri";
 import { FaWallet, FaChevronDown } from "react-icons/fa";
 
-export const MetaMaskConnection = () => {
+type MetaMaskConnectionProps = ButtonProps;
+
+export const MetaMaskConnection = (props: MetaMaskConnectionProps) => {
   const { wallet, connectWallet } = useContext(
     MetaMaskContext
   ) as MetaMaskContextType;
@@ -36,15 +39,17 @@ export const MetaMaskConnection = () => {
     <Flex align="center">
       <Menu>
         <MenuButton
+          
           as={Button}
           size="sm"
           fontSize="md"
           borderRadius={30}
-          background="blue.500"
+          // background="blue.500"
           colorScheme="blue"
           leftIcon={<FaWallet />}
           rightIcon={<FaChevronDown />}
           _hover={{ background: "blue.300" }}
+          {...props}
         >
           {displayWallet}
         </MenuButton>
@@ -77,37 +82,18 @@ export const MetaMaskConnection = () => {
     </Flex>
   ) : (
     <Button
+    boxShadow="0 2px 4px #000000"
       size="sm"
       // color="white"
       // fontSize="md"
       borderRadius={30}
       colorScheme="blue"
       // background="blue.500"
-      // onClick={() => connectWallet()}
+      onClick={() => connectWallet()}
       // _hover={{ background: "blue.300" }}
+      {...props}
     >
       Connect Wallet
     </Button>
   );
 };
-
-// type MetaMaskConnectionProps = ButtonProps;
-
-// export const MetaMaskConnection: React.FC<MetaMaskConnectionProps> = (
-//   props
-// ) => {
-//   return (
-//     <Button
-//       size="sm"
-//       color="white"
-//       // fontSize="md"
-//       borderRadius={30}
-//       background="blue.500"
-//       // onClick={() => connectWallet()}
-//       // _hover={{ background: "blue.300" }}
-//       {...props}
-//     >
-//       Connect Wallet
-//     </Button>
-//   );
-// };
