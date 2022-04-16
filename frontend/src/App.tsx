@@ -1,38 +1,38 @@
-import * as React from "react"
+import * as React from "react";
 import {
   ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+  HStack,
+} from "@chakra-ui/react";
+import { theme } from "./theme";
+import { Global, css } from "@emotion/react";
+import { Sidebar } from "./components/sidebar/Sidebar";
+import MetaMaskProvider from "./context/metaMaskContext";
+import { DocumentViewer } from "./components/document-viewer/DocumentViewer";
+import SelectedDocumentsProvider from "./context/selectedDocumentsContext";
+import { MetaMaskConnection } from "./components/navbar/components/MetaMaskConnection";
+import { ColorModeSwitcher } from "./components/navbar/components/ColorModeSwitcher";
 
-export const App = () => (
-  <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Chakra
-          </Link>
-        </VStack>
-      </Grid>
-    </Box>
-  </ChakraProvider>
-)
+// const GlobalStyles = css`
+//   .js-focus-visible :focus:not([data-focus-visible-added]) {
+//     outline: none;
+//     box-shadow: none;
+//   }
+// `;
+
+export const App = () => {
+  return (
+    <ChakraProvider theme={theme}>
+      <MetaMaskProvider>
+        <SelectedDocumentsProvider>
+          {/* <Global styles={GlobalStyles} /> */}
+          <HStack top={3} right={4} pos="absolute" zIndex="overlay">
+            <MetaMaskConnection boxShadow="0 2px 4px #000000" />
+            <ColorModeSwitcher pos="relative" />
+          </HStack>
+          <Sidebar />
+          <DocumentViewer />
+        </SelectedDocumentsProvider>
+      </MetaMaskProvider>
+    </ChakraProvider>
+  );
+};
