@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Button,
   Popover,
@@ -12,6 +12,7 @@ import {
 import {
   SelectedDocumentsContext,
   SelectedDocumentsContextType,
+  useSelectedDocuments,
 } from "../../../context";
 
 type UploadDocumentButtonProps = {
@@ -21,13 +22,7 @@ type UploadDocumentButtonProps = {
 export const UploadDocumentButton = ({
   nftSignature,
 }: UploadDocumentButtonProps) => {
-  const { setDocuments } = useContext(
-    SelectedDocumentsContext
-  ) as SelectedDocumentsContextType;
-
-  // const [isOpen1, setIsOpen] = React.useState(true);
-  // const open = () => setIsOpen(!isOpen1);
-  // const close = () => setIsOpen(false);
+  const { setDocuments } = useSelectedDocuments();
 
   const [popover, showPopover] = useState<boolean>(false);
 
@@ -58,11 +53,9 @@ export const UploadDocumentButton = ({
           </Button>
         </PopoverTrigger>
         <PopoverContent
-          //  ml={40}
           w="fit-content"
           boxShadow="0 1px 6px #000000"
           color="white"
-          // bgGradient="linear(to-b, blue.500, blue.300)"
           bg="blue.500"
         >
           <PopoverHeader fontWeight="semibold" border="0">

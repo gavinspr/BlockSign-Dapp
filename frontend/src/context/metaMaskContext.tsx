@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { BlockchainNetwork } from "@/types";
 import { ethereum } from "../types/Ethereum";
 import { BigNumber, ethers } from "ethers";
@@ -24,6 +24,9 @@ type BalancesType = {
 };
 
 export const MetaMaskContext = createContext<MetaMaskContextType | null>(null);
+
+export const useMetaMask = () =>
+  useContext(MetaMaskContext) as MetaMaskContextType;
 
 const MetaMaskProvider: React.FC<React.ReactNode> = ({ children }) => {
   const [wallet, setWallet] = useState<string>("");

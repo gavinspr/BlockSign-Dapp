@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { Box, Button, Center, Heading, Image, Text } from "@chakra-ui/react";
 import ReactSignatureCanvas from "react-signature-canvas";
 import {
-  SelectedDocumentsContext,
-  SelectedDocumentsContextType,
+  useSelectedDocuments,
 } from "../../context";
 import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
 import html2canvas from "html2canvas";
@@ -11,10 +10,8 @@ import { jsPDF } from "jspdf";
 import Draggable from "react-draggable";
 
 export const DocumentViewer = () => {
-  const { selectedDocuments } = useContext(
-    SelectedDocumentsContext
-  ) as SelectedDocumentsContextType;
-
+  const { selectedDocuments } = useSelectedDocuments();
+  
   console.log(selectedDocuments);
 
   const docs = [

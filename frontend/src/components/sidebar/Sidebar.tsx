@@ -1,52 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
-import {
-  Box,
-  Button,
-  Flex,
-  Grid,
-  Heading,
-  HStack,
-  Image,
-  Input,
-  Spacer,
-  Text,
-  VStack,
-  Fade,
-  ScaleFade,
-  Slide,
-  SlideFade,
-  useDisclosure,
-  Container,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  Center,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  PopoverFooter,
-  PopoverArrow,
-  PopoverCloseButton,
-  PopoverAnchor,
-  ButtonGroup,
-  PopoverProps,
-} from "@chakra-ui/react";
+import React, { useContext } from "react";
+import { Image, Spacer, HStack, VStack, Heading } from "@chakra-ui/react";
 import { UploadDocumentButton } from "./components/UploadDocumentButton";
 import { DocNameInput } from "./components/DocNameInput";
 import { DocDescriptionInput } from "./components/DocDescriptionInput";
 import { SendButton } from "./components/SendButton";
 import { SignButton } from "./components/SignButton";
 import { DocSigners } from "./components/doc-signers/DocSigners";
-import { MetaMaskConnection } from "../navbar/components/MetaMaskConnection";
 import { MySignature } from "./components/MySignature";
 import { MyDocuments } from "./components/MyDocuments";
-import { MetaMaskContext, MetaMaskContextType } from "../../context";
+import {
+  useMetaMask,
+  useSelectedDocuments,
+} from "../../context";
 
 const Header = () => {
   return (
@@ -59,39 +24,23 @@ const Header = () => {
   );
 };
 
-type SidebarProps = {};
-
 export const Sidebar = () => {
-  const [isOpen1, setIsOpen] = React.useState(false);
-  const open = () => setIsOpen(!isOpen1);
-  const close = () => setIsOpen(false);
-  const [myDocuments, showMyDocuments] = useState<boolean>(true);
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [urDocs, setUrDocs] = useState<any[]>([]);
-  const [urSig, setUrSig] = useState<any>();
-  useEffect(() => {
-    setIsOpen(true);
-  }, []);
+  const { nftSignature } = useMetaMask();
 
-  const { nftSignature } = useContext(MetaMaskContext) as MetaMaskContextType;
-
+  const { selectedDocuments } = useSelectedDocuments();
+  
   return (
     <VStack
       w="30rem"
       h="100vh"
       bg="white"
-      pos="absolute" // ? needed
+      pos="absolute"
       boxShadow="0 1px 10px #000000"
     >
       <Header />
       <UploadDocumentButton nftSignature={nftSignature} />
 
-      {myDocuments ? (
-        <>
-          <MyDocuments />
-          <MySignature nftSignature={nftSignature} />
-        </>
-      ) : (
+      {selectedDocuments ? (
         <>
           <DocNameInput />
           <DocDescriptionInput />
@@ -109,6 +58,11 @@ export const Sidebar = () => {
             <SendButton />
           </HStack>
         </>
+      ) : (
+        <VStack w="100%">
+          <MyDocuments />
+          <MySignature nftSignature={nftSignature} />
+        </VStack>
       )}
     </VStack>
   );

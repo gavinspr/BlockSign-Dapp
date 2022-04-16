@@ -1,5 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
-import { MetaMaskContext, MetaMaskContextType } from "../../../context";
+import React, { useState, useEffect,  } from "react";
+import {
+  useMetaMask,
+} from "../../../context";
 import {
   Button,
   Menu,
@@ -21,9 +23,7 @@ import { FaWallet, FaChevronDown } from "react-icons/fa";
 type MetaMaskConnectionProps = ButtonProps;
 
 export const MetaMaskConnection = (props: MetaMaskConnectionProps) => {
-  const { wallet, connectWallet } = useContext(
-    MetaMaskContext
-  ) as MetaMaskContextType;
+  const { wallet, connectWallet } = useMetaMask();
 
   const displayWallet: string = `0x...${wallet.slice(-4)}`;
 
@@ -39,7 +39,6 @@ export const MetaMaskConnection = (props: MetaMaskConnectionProps) => {
     <Flex align="center">
       <Menu>
         <MenuButton
-          
           as={Button}
           size="sm"
           fontSize="md"
@@ -82,7 +81,7 @@ export const MetaMaskConnection = (props: MetaMaskConnectionProps) => {
     </Flex>
   ) : (
     <Button
-    boxShadow="0 2px 4px #000000"
+      boxShadow="0 2px 4px #000000"
       size="sm"
       // color="white"
       // fontSize="md"

@@ -17,7 +17,9 @@ import {
   RiInformationFill,
 } from "react-icons/ri";
 import { FormSigner } from "@/types/FormSigner";
-import { MetaMaskContext, MetaMaskContextType } from "../../../../context";
+import {
+  useMetaMask,
+} from "../../../../context";
 import { SignerInfo } from "./components/SignerInfo";
 import { AddSignerInputs } from "./components/AddSignerInputs";
 
@@ -26,7 +28,7 @@ export const DocSigners = () => {
   const [addNewSigner, showAddNewSigner] = useState<boolean>(false);
   const [documentSigners, setDocumentSigners] = useState<FormSigner[]>([]);
 
-  const { wallet } = useContext(MetaMaskContext) as MetaMaskContextType;
+  const { wallet } = useMetaMask();
 
   useEffect(() => {
     documentSigners.length < 1
